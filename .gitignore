@@ -1,0 +1,5 @@
+.packages
+miners_binary/*
+.dart_tool
+pubspec.lock
+log/*
