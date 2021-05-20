@@ -8,9 +8,10 @@ final args =
     "-pool stratum+tcp://daggerhashimoto.eu.nicehash.com:3353 -wal ${walletBTC}.1070 -pass x -proto 4 -stales 0";
 
 var running = true;
-int pid;
+int pid = 0;
 main() async {
-  runner(bin, args);
+  await runner(bin, args);
+  watcher("PhoenixMiner");
 }
 
 runner(String bin, String args) async {
@@ -18,16 +19,15 @@ runner(String bin, String args) async {
   await shell
       .cd('log')
       .run('gnome-terminal -- sh -c "chmod +x ${bin}; ${bin + args}"');
-  watcher("PhoenixMiner");
 }
 
 watcher(String miner) {
   Future.delayed(Duration(seconds: 5), () async {
     var controller = ShellLinesController();
     var shell = Shell(stdout: controller.sink, verbose: false);
+    // ignore: missing_return
     await shell.run("pidof ${miner}").onError((error, stackTrace) {
       runner(bin, args);
-      return;
     });
     controller.stream.listen((event) {
       pid = int.parse(event.split(" ")[0]);

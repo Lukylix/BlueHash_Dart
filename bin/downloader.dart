@@ -35,12 +35,12 @@ Future<void> downloadFile(String url, String savePath) async {
   print("Download completed");
 }
 
-Future<void> extractFile(String path, String archivName) {
+void extractFile(String path, String archivName) {
   var bytes = File(path + archivName).readAsBytesSync();
   if (new RegExp(r"gz$").hasMatch(archivName))
-    bytes = GZipDecoder().decodeBytes(bytes);
+  bytes = GZipDecoder().decodeBytes(bytes);
   // Decode the Zip file
-  final archive = TarDecoder().decodeBytes(bytes);
+    final archive = TarDecoder().decodeBytes(bytes);
 
   // Extract the contents of the Zip archive to disk.
   for (final file in archive) {

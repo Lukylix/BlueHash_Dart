@@ -1,6 +1,6 @@
 name: "downloader"
 environment:
-  sdk: ">=2.0.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dev_dependencies:
   test: "<2.0.0"
@@ -9,4 +9,5 @@ dependencies:
   dio: ^4.0.0
   http: ^0.13.3
   process_run: ^0.12.1
+  system_info: ^1.0.0
   web_scraper: ^0.1.4
