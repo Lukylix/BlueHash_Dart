@@ -4,19 +4,20 @@ import '../config/miners.dart';
 import 'package:dio/dio.dart';
 import 'package:archive/archive.dart';
 import 'package:archive/archive_io.dart';
+import './update.dart';
 
 void main(List<String> links) {
-  if (links.isEmpty)
-    return print("Specify miner to download: \n ${miners.keys}");
+  getMinerBinary("NBMiner");
+}
 
-  for (var link in links) {
-    if (!miners.keys.contains(link)) return print("invalid miner");
-    RegExp uriEnd = RegExp(r"[^\/]+(?=\/$|$)");
-    String fileName = uriEnd.firstMatch(miners[link]).group(0).toString();
+void getMinerBinary(String miner) async{
+  //Grap the link
+  String link = await downlinkfinder(miner);
+  RegExp uriEnd = RegExp(r"[^\/]+(?=\/$|$)");
+  String fileName = uriEnd.firstMatch(link).group(0).toString();
 
-    downloadFile(miners[link], "./miners_binary/${link}/${fileName}")
-        .then((value) => extractFile("./miners_binary/${link}/", fileName));
-  }
+  downloadFile(link, "./miners_binary/${miner}/${fileName}")
+      .then((value) => extractFile("./miners_binary/${miner}/", fileName));
 }
 
 Future<void> downloadFile(String url, String savePath) async {
@@ -38,9 +39,9 @@ Future<void> downloadFile(String url, String savePath) async {
 void extractFile(String path, String archivName) {
   var bytes = File(path + archivName).readAsBytesSync();
   if (new RegExp(r"gz$").hasMatch(archivName))
-  bytes = GZipDecoder().decodeBytes(bytes);
+    bytes = GZipDecoder().decodeBytes(bytes);
   // Decode the Zip file
-    final archive = TarDecoder().decodeBytes(bytes);
+  final archive = TarDecoder().decodeBytes(bytes);
 
   // Extract the contents of the Zip archive to disk.
   for (final file in archive) {

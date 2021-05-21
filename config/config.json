@@ -1,0 +1,23 @@
+{
+  "WaletBTC": "3QEw3meZEefg71vZURL9u3a77Y6QqdVR1M",
+  "miners": {
+    "PhoenixMiner":{
+      "updateLink": "https://phoenixminer.info/downloads/"
+    },
+    "NanoMiner": {
+      "updateLink":"https://api.github.com/repos/nanopool/nanominer/releases/latest"
+    },
+        
+    "NBMiner":{
+      "updateLink": "https://api.github.com/repos/NebuTech/NBMiner/releases/latest"
+      
+    }, 
+    "GMiner":{
+      "updateLink":"https://api.github.com/repos/develsoftware/GMinerRelease/releases/latest"
+    },
+        
+    "CryptoDredge":{
+      "updateLink": "https://api.github.com/repos/technobyl/CryptoDredge/releases"
+    }
+  }
+}

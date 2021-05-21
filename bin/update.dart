@@ -20,7 +20,7 @@ main(List<String> args) {
   // downlinkfinder("PhoenixMiner");
 }
 
-downlinkfinder(String miner) {
+Future downlinkfinder(String miner) {
   if (minersLinks[miner].contains("github")) return downlinkfinderGithub(miner);
   return downlinkfinderHtml(miner);
 }
@@ -41,7 +41,7 @@ downlinkfinderGithub(String miner) async {
         links.add(asset["browser_download_url"]);
     }
   }
-  return links;
+  return links[0];
 }
 
 downlinkfinderHtml(String miner) async {
@@ -64,5 +64,5 @@ downlinkfinderHtml(String miner) async {
     if (!links[i].contains(RegExp(r'^http')))
       links[i] = minersLinks[miner] + links[i];
   }
-  return links;
+  return links[0];
 }
