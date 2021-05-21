@@ -1,12 +1,10 @@
 {
   "WaletBTC": "3QEw3meZEefg71vZURL9u3a77Y6QqdVR1M",
-  "processor": "Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz",
-  "graphicsCards": [
-    {
-      "name": "GeForce GTX 1070",
-      "type": "NVIDIA"
-    }
-  ],
+  "processor": "",
+  "graphicsCards":[{
+    "name": "",
+    "type": ""
+  }],
   "miners": {
     "PhoenixMiner": {
       "updateLink": "https://phoenixminer.info/downloads/",
